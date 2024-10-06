@@ -11,7 +11,7 @@ export default class Pricing {
   }
 
   set amount(value) {
-    if (value instanceof 'number') {
+    if (typeof value === 'number') {
       this._amount = value;
     }
     throw new TypeError('Expected a Number for value');
@@ -25,11 +25,11 @@ export default class Pricing {
   }
 
   displayFullPrice() {
-    return `${this._amount} ${this._currency.displayFullCurrency} `;
+    return `${this._amount} ${this._currency.name} (${this.currency.code}) `;
   }
 
   static convertPrice(amount, conversionRate) {
-    if ((amount instanceof 'number') && (conversionRate instanceof 'number')) {
+    if ((typeof amount === 'number') && (typeof conversionRate === 'number')) {
       return amount * conversionRate;
     }
     throw new TypeError('Expected numbers for both amount and conversionRate');
